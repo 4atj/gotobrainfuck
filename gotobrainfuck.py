@@ -132,7 +132,7 @@ class Code:
         code_pt = 0
         while type(token := self.tokens[code_pt]) is not ExitToken:
             pt = context.exec(token)
-            code_pt = code_pt + 1 if pt < 0 else pt
+            code_pt = (code_pt + 1 if pt < 0 else pt) % len(self.tokens)
 
     def __str__(self) -> str:
         return f"{self.__class__.__name__}: {self.tokens}"
